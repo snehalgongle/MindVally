@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.snake.mindvally.R;
 import com.snake.mindvally.data.model.pojo.Data;
+import com.snake.mindvally.util.DownloadImageTask;
 import com.snake.mindvally.util.ThumbnailLoader;
 
 import java.util.ArrayList;
@@ -94,9 +95,10 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoVi
             this.data = data;
             userName.setText(data.getUser().getUsername());
             name.setText(data.getUser().getName());
-//            image.setImageBitmap(getBitmapFromURL(data.getUrls().getRegular()));
-            tnloader.loadBitmap(data.getUrls().getRegular(),image);
-//            new DownloadImageTask(image).execute(data.getUrls().getRegular());
+            new DownloadImageTask(image).execute(data.getUrls().getRegular());
+            new DownloadImageTask(profilePic).execute(data.getUser().getProfileImage().getMedium());
+//            tnloader.loadBitmap(data.getUrls().getRegular(),image);
+//            tnloader.loadBitmap(data.getUser().getProfileImage().getMedium(),profilePic);
         }
     }
 
